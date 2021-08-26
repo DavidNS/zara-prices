@@ -9,6 +9,50 @@
 			"name": "GET_ONE",
 			"item": [
 				{
+					"name": "GET_first_request_on_load",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const expetedResponseTime = 2*parseInt(pm.environment.get(\"expectedDefaultResponseTime\"));",
+									"",
+									"pm.test(\"Response time: \"+expetedResponseTime, function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(expetedResponseTime);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"brandId\": 1,\n    \"productId\": 35455,\n    \"applicationDate\": \"2020-06-14-10.00.00\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}/prices",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"prices"
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "GET_brandId1_productId35455_applicationDate2020-06-14-10.00.00",
 					"event": [
 						{
@@ -26,15 +70,15 @@
 									"    \"price\": 35.5",
 									"}",
 									"",
-									"pm.test(\"Response status\", function () {",
+									"pm.test(\"Response status: \"+exectedStatus, function () {",
 									"    pm.response.to.have.status(exectedStatus);",
 									"});",
 									"",
-									"pm.test(\"Response time\", function () {",
+									"pm.test(\"Response time: \"+expetedResponseTime, function () {",
 									"    pm.expect(pm.response.responseTime).to.be.below(expetedResponseTime);",
 									"});",
 									"",
-									"pm.test(\"Body\", function () {",
+									"pm.test(\"Response body\", function () {",
 									"    pm.response.to.be.json;",
 									"    const responseJson = pm.response.json();",
 									"    pm.expect(expectedJson).to.eql(responseJson);",
@@ -89,11 +133,11 @@
 									"    \"price\": 25.45",
 									"}",
 									"",
-									"pm.test(\"Response status\", function () {",
+									"pm.test(\"Response status: \"+exectedStatus, function ()  {",
 									"    pm.response.to.have.status(exectedStatus);",
 									"});",
 									"",
-									"pm.test(\"Response time\", function () {",
+									"pm.test(\"Response time: \"+expetedResponseTime, function () {",
 									"    pm.expect(pm.response.responseTime).to.be.below(expetedResponseTime);",
 									"});",
 									"",
@@ -152,11 +196,11 @@
 									"    \"price\": 35.5",
 									"}",
 									"",
-									"pm.test(\"Response status\", function () {",
+									"pm.test(\"Response status: \"+exectedStatus, function () {",
 									"    pm.response.to.have.status(exectedStatus);",
 									"});",
 									"",
-									"pm.test(\"Response time\", function () {",
+									"pm.test(\"Response time: \"+expetedResponseTime, function ()  {",
 									"    pm.expect(pm.response.responseTime).to.be.below(expetedResponseTime);",
 									"});",
 									"",
@@ -215,7 +259,7 @@
 									"    \"price\": 30.5",
 									"}",
 									"",
-									"pm.test(\"Response status\", function () {",
+									"pm.test(\"Response status: \"+exectedStatus, function () {",
 									"    pm.response.to.have.status(exectedStatus);",
 									"});",
 									"",
@@ -278,11 +322,11 @@
 									"    \"price\": 38.95",
 									"}",
 									"",
-									"pm.test(\"Response status\", function () {",
+									"pm.test(\"Response status: \"+exectedStatus, function () {",
 									"    pm.response.to.have.status(exectedStatus);",
 									"});",
 									"",
-									"pm.test(\"Response time\", function () {",
+									"pm.test(\"Response time: \"+expetedResponseTime, function () {",
 									"    pm.expect(pm.response.responseTime).to.be.below(expetedResponseTime);",
 									"});",
 									"",
@@ -344,11 +388,11 @@
 									"",
 									"",
 									"",
-									"pm.test(\"Response status\", function () {",
+									"pm.test(\"Response status: \"+exectedStatus, function () {",
 									"    pm.response.to.have.status(exectedStatus);",
 									"});",
 									"",
-									"pm.test(\"Response time\", function () {",
+									"pm.test(\"Response time: \"+expetedResponseTime, function () {",
 									"    pm.expect(pm.response.responseTime).to.be.below(expetedResponseTime);",
 									"});",
 									"",
@@ -411,11 +455,11 @@
 									"",
 									"",
 									"",
-									"pm.test(\"Response status\", function () {",
+									"pm.test(\"Response status: \"+exectedStatus, function () {",
 									"    pm.response.to.have.status(exectedStatus);",
 									"});",
 									"",
-									"pm.test(\"Response time\", function () {",
+									"pm.test(\"Response time: \"+expetedResponseTime, function ()  {",
 									"    pm.expect(pm.response.responseTime).to.be.below(expetedResponseTime);",
 									"});",
 									"",
@@ -476,11 +520,11 @@
 									"    \"path\": \"/prices\"",
 									"}",
 									"",
-									"pm.test(\"Response status\", function () {",
+									"pm.test(\"Response status: \"+exectedStatus, function ()  {",
 									"    pm.response.to.have.status(exectedStatus);",
 									"});",
 									"",
-									"pm.test(\"Response time\", function () {",
+									"pm.test(\"Response time: \"+expetedResponseTime, function ()  {",
 									"    pm.expect(pm.response.responseTime).to.be.below(expetedResponseTime);",
 									"});",
 									"",
@@ -541,11 +585,11 @@
 									"    \"path\": \"/prices\"",
 									"}",
 									"",
-									"pm.test(\"Response status\", function () {",
+									"pm.test(\"Response status: \"+exectedStatus, function ()  {",
 									"    pm.response.to.have.status(exectedStatus);",
 									"});",
 									"",
-									"pm.test(\"Response time\", function () {",
+									"pm.test(\"Response time: \"+expetedResponseTime, function () {",
 									"    pm.expect(pm.response.responseTime).to.be.below(expetedResponseTime);",
 									"});",
 									"",
@@ -606,11 +650,11 @@
 									"    \"path\": \"/prices\"",
 									"}",
 									"",
-									"pm.test(\"Response status\", function () {",
+									"pm.test(\"Response status: \"+exectedStatus, function () {",
 									"    pm.response.to.have.status(exectedStatus);",
 									"});",
 									"",
-									"pm.test(\"Response time\", function () {",
+									"pm.test(\"Response time: \"+expetedResponseTime, function () {",
 									"    pm.expect(pm.response.responseTime).to.be.below(expetedResponseTime);",
 									"});",
 									"",
@@ -671,11 +715,11 @@
 									"    \"path\": \"/prices\"",
 									"}",
 									"",
-									"pm.test(\"Response status\", function () {",
+									"pm.test(\"Response status: \"+exectedStatus, function ()  {",
 									"    pm.response.to.have.status(exectedStatus);",
 									"});",
 									"",
-									"pm.test(\"Response time\", function () {",
+									"pm.test(\"Response time: \"+expetedResponseTime, function () {",
 									"    pm.expect(pm.response.responseTime).to.be.below(expetedResponseTime);",
 									"});",
 									"",
