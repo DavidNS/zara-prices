@@ -697,7 +697,7 @@
 					"response": []
 				},
 				{
-					"name": "GET_APPLICATION_NOT_FOUND",
+					"name": "GET_NOT_FOUND",
 					"event": [
 						{
 							"listen": "test",
