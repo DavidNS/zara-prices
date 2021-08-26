@@ -9,7 +9,7 @@ import lombok.Data;
 
 @Embeddable
 @Data
-public class PricesID implements Serializable {
+public class PriceID implements Serializable {
 
 	private Integer brandId;
 	

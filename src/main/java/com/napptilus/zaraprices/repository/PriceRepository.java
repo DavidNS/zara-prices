@@ -5,12 +5,12 @@ import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import com.napptilus.zaraprices.entity.Prices;
-import com.napptilus.zaraprices.entity.PricesID;
+import com.napptilus.zaraprices.entity.Price;
+import com.napptilus.zaraprices.entity.PriceID;
 
-public interface PriceRepository extends JpaRepository<Prices, PricesID> {
+public interface PriceRepository extends JpaRepository<Price, PriceID> {
 
-	List<Prices> findByBrandIdAndProductIdAndStartDateLessThanEqualAndEndDateGreaterThanEqualOrderByPriorityAsc(Integer brandID,
+	List<Price> findByBrandIdAndProductIdAndStartDateLessThanEqualAndEndDateGreaterThanEqualOrderByPriorityAsc(Integer brandID,
 			Integer productID, Date startDate,Date endDate);
 
 }

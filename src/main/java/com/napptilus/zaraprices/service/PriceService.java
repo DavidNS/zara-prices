@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 
 import com.napptilus.zaraprices.dto.PricesInDTO;
 import com.napptilus.zaraprices.dto.PricesOutDTO;
-import com.napptilus.zaraprices.entity.Prices;
+import com.napptilus.zaraprices.entity.Price;
 import com.napptilus.zaraprices.exception.NoSuchElementFoundException;
 import com.napptilus.zaraprices.repository.PriceRepository;
 
@@ -21,17 +21,17 @@ public class PriceService {
 	private final PriceRepository pricesRepository;
 
 	public PricesOutDTO getPrices(@Validated @RequestBody PricesInDTO pricesInDto) {
-		List<Prices> prices = pricesRepository
+		List<Price> prices = pricesRepository
 				.findByBrandIdAndProductIdAndStartDateLessThanEqualAndEndDateGreaterThanEqualOrderByPriorityAsc(
 						pricesInDto.getBrandId(), pricesInDto.getProductId(), pricesInDto.getApplicationDate(),
 						pricesInDto.getApplicationDate());
-		if (prices.size() > 1) {
+		if (prices != null && prices.size() > 0) {
 			return priceEntityToPriceOutDTO(prices.get(0));
 		}
 		throw new NoSuchElementFoundException("Not found element related in prices database");
 	}
 
-	private PricesOutDTO priceEntityToPriceOutDTO(Prices prices) {
+	private PricesOutDTO priceEntityToPriceOutDTO(Price prices) {
 		return new PricesOutDTO(prices.getBrandId(), prices.getProductId(), prices.getPriceList(),
 				prices.getStartDate(), prices.getEndDate(), prices.getPrice());
 	}

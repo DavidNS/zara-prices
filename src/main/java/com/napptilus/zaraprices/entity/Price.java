@@ -10,8 +10,8 @@ import lombok.Data;
 
 @Entity
 @Data
-@IdClass(PricesID.class)
-public class Prices {
+@IdClass(PriceID.class)
+public class Price {
 
 	@Id
 	private Integer brandId;
