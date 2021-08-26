@@ -1,6 +1,6 @@
 package com.napptilus.zaraprices.entity;
 
-import java.util.Date;
+import java.time.LocalDateTime;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -23,10 +23,10 @@ public class Price {
 	private Integer priority;
 	
 	@Id
-	private Date startDate;
+	private LocalDateTime startDate;
 	
 	@Id
-	private Date endDate;
+	private LocalDateTime endDate;
 	
 	private Integer priceList;
 	
@@ -34,7 +34,7 @@ public class Price {
 	
 	private String curr;
 	
-	private Date lastUpdate;
+	private LocalDateTime lastUpdate;
 	
 	private String lastUpdateBy;
 }

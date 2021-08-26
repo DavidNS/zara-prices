@@ -1,6 +1,8 @@
 package com.napptilus.zaraprices.dto;
 
-import java.util.Date;
+import java.time.LocalDateTime;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -17,9 +19,11 @@ public class PricesOutDTO {
 	
 	private Integer priceList;
 	
-	private Date startDate;
+	@JsonFormat( shape=JsonFormat.Shape.STRING, pattern="yyyy-MM-dd-HH.mm.ss")
+	private LocalDateTime startDate;
 	
-	private Date endDate;
+	@JsonFormat( shape=JsonFormat.Shape.STRING, pattern="yyyy-MM-dd-HH.mm.ss")
+	private LocalDateTime endDate;
 	
 	private Float price;
 }

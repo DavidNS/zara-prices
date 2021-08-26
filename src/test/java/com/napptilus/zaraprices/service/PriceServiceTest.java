@@ -51,7 +51,7 @@ class PriceServiceTest {
 	@Test
 	void testGetPricesRepositoryGivesEmpty() {
 		when(priceRepository
-				.findByBrandIdAndProductIdAndStartDateLessThanEqualAndEndDateGreaterThanEqualOrderByPriorityAsc(
+				.findByBrandIdAndProductIdAndStartDateLessThanEqualAndEndDateGreaterThanEqualOrderByPriorityDesc(
 						Mockito.any(), Mockito.any(), Mockito.any(), Mockito.any())).thenReturn(new ArrayList<>());
 		assertThrows(NoSuchElementFoundException.class, () -> {
 			instance.getPrices(new PricesInDTO());
@@ -69,7 +69,7 @@ class PriceServiceTest {
 		repositoryResults.add(price);
 		
 		when(priceRepository
-				.findByBrandIdAndProductIdAndStartDateLessThanEqualAndEndDateGreaterThanEqualOrderByPriorityAsc(
+				.findByBrandIdAndProductIdAndStartDateLessThanEqualAndEndDateGreaterThanEqualOrderByPriorityDesc(
 						Mockito.any(), Mockito.any(), Mockito.any(), Mockito.any())).thenReturn(repositoryResults);
 		PricesOutDTO result=instance.getPrices(new PricesInDTO());
 		assertEquals(expected, result.getBrandId());
@@ -92,7 +92,7 @@ class PriceServiceTest {
 		repositoryResults.add(price2);
 		
 		when(priceRepository
-				.findByBrandIdAndProductIdAndStartDateLessThanEqualAndEndDateGreaterThanEqualOrderByPriorityAsc(
+				.findByBrandIdAndProductIdAndStartDateLessThanEqualAndEndDateGreaterThanEqualOrderByPriorityDesc(
 						Mockito.any(), Mockito.any(), Mockito.any(), Mockito.any())).thenReturn(repositoryResults);
 		PricesOutDTO result=instance.getPrices(new PricesInDTO());
 		assertEquals(expected, result.getBrandId());

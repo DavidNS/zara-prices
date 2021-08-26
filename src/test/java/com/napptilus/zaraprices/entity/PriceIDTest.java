@@ -4,7 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertNull;
 
-import java.util.Date;
+import java.time.LocalDateTime;
 
 import org.junit.jupiter.api.Test;
 
@@ -72,7 +72,7 @@ class PriceIDTest {
 
 	@Test
 	void testSetStartDate() {
-		Date expected=new Date();
+		LocalDateTime expected=LocalDateTime.now();
 		PriceID instance=new PriceID();
 		instance.setStartDate(expected);
 		assertEquals(expected, instance.getStartDate());
@@ -80,7 +80,7 @@ class PriceIDTest {
 
 	@Test
 	void testSetEndDate() {
-		Date expected=new Date();
+		LocalDateTime expected=LocalDateTime.now();
 		PriceID instance=new PriceID();
 		instance.setEndDate(expected);
 		assertEquals(expected, instance.getEndDate());

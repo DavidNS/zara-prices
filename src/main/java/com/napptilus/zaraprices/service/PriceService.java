@@ -3,7 +3,6 @@ package com.napptilus.zaraprices.service;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.RequestBody;
 
 import com.napptilus.zaraprices.dto.PricesInDTO;
@@ -20,15 +19,15 @@ public class PriceService {
 
 	private final PriceRepository pricesRepository;
 
-	public PricesOutDTO getPrices(@Validated @RequestBody PricesInDTO pricesInDto) {
+	public PricesOutDTO getPrices(@RequestBody PricesInDTO pricesInDto) throws NoSuchElementFoundException {
 		List<Price> prices = pricesRepository
-				.findByBrandIdAndProductIdAndStartDateLessThanEqualAndEndDateGreaterThanEqualOrderByPriorityAsc(
+				.findByBrandIdAndProductIdAndStartDateLessThanEqualAndEndDateGreaterThanEqualOrderByPriorityDesc(
 						pricesInDto.getBrandId(), pricesInDto.getProductId(), pricesInDto.getApplicationDate(),
 						pricesInDto.getApplicationDate());
 		if (prices != null && prices.size() > 0) {
 			return priceEntityToPriceOutDTO(prices.get(0));
 		}
-		throw new NoSuchElementFoundException("Not found element related in prices database");
+		throw new NoSuchElementFoundException("Not found element with these values in database");
 	}
 
 	private PricesOutDTO priceEntityToPriceOutDTO(Price prices) {
