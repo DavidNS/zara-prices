@@ -16,6 +16,12 @@ class PriceTest {
 		assertNotNull(instance);
 	}
 	
+	@Test
+	void testGetId() {
+		Price instance=new Price();
+		assertNull(instance.getId());
+	}
+	
 	
 	@Test
 	void testGetBrandId() {
@@ -77,6 +83,14 @@ class PriceTest {
 		assertNull(instance.getLastUpdateBy());
 	}
 
+	@Test
+	void testSetId() {
+		Integer expected=1;
+		Price instance=new Price();
+		instance.setId(expected);
+		assertEquals(expected, instance.getId());
+	}
+	
 	@Test
 	void testSetBrandId() {
 		Integer expected=1;
