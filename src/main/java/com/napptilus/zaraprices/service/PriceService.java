@@ -17,6 +17,8 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class PriceService {
 
+	private static final String NOT_FOUND_ELEMENT_WITH_THESE_VALUES_IN_DATABASE = "Not found element with these values in database";
+	
 	private final PriceRepository pricesRepository;
 
 	public PricesOutDTO getPrices(@RequestBody PricesInDTO pricesInDto) throws NoSuchElementFoundException {
@@ -27,7 +29,7 @@ public class PriceService {
 		if (prices != null && prices.size() > 0) {
 			return priceEntityToPriceOutDTO(prices.get(0));
 		}
-		throw new NoSuchElementFoundException("Not found element with these values in database");
+		throw new NoSuchElementFoundException(NOT_FOUND_ELEMENT_WITH_THESE_VALUES_IN_DATABASE);
 	}
 
 	private PricesOutDTO priceEntityToPriceOutDTO(Price prices) {
