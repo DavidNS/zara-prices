@@ -1,6 +1,6 @@
 # ZARA-PRICES
 
-Endpoint to provide items prices details.
+Endpoint to provide items prices details based on ZaraPrices.pdf requirements.
 
 # Run application with maven
 
